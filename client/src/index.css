@@ -145,3 +145,9 @@ html{
     transform: translateY(-3px);
     box-shadow:0 10px 25px rgba(47,99,224,.3);
 }
+
+.logo {
+  text-decoration: none;
+  color: #2f63e0;
+  font-weight: bold;
+}
