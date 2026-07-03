@@ -1,17 +1,13 @@
 import "./index.css";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
 
 function App() {
   return (
-    <div className="hero">
-      <h1>FinPilot</h1>
-
-      <p>Smart Personal Finance Tracker</p>
-
-      <div className="buttons">
-        <button>Get Started</button>
-        <button>Login</button>
-      </div>
-    </div>
+    <>
+      <Navbar />
+      <Hero />
+    </>
   );
 }
 
