@@ -1,8 +1,16 @@
+import "./index.css";
+
 function App() {
   return (
-    <div>
-      <h1>Welcome to FinPilot 🚀</h1>
-      <p>My first full-stack project!</p>
+    <div className="hero">
+      <h1>FinPilot</h1>
+
+      <p>Smart Personal Finance Tracker</p>
+
+      <div className="buttons">
+        <button>Get Started</button>
+        <button>Login</button>
+      </div>
     </div>
   );
 }
