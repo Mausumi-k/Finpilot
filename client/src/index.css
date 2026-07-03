@@ -106,7 +106,7 @@ nav{
     position: sticky;
     top:0;
     z-index:100;
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
+    box-shadow:0 4px 20px rgba(0,0,0,.08);
 }
 
 .hero-image img{
@@ -125,7 +125,10 @@ nav{
 }
 
 .logo{
-    cursor:pointer;
+    cursor:pointer; 
+    font-size:42px;
+    font-weight:700;
+    letter-spacing:.5px;
 }
 
 .btn:hover{

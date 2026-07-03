@@ -1,0 +1,63 @@
+.form-card{
+    background:white;
+    padding:30px;
+    border-radius:22px;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+    /*position:sticky;*/
+    top:100px;
+}
+
+.form-card h2{
+    margin-bottom:20px;
+}
+
+.form-card form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.form-card input,
+.form-card select{
+
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    font-size:15px;
+
+}
+
+.form-card button{
+
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:15px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.form-card button:hover{
+    transform:translateY(-3px);
+    background:#1d4ed8;
+    position:sticky;
+    top:100px;
+}
+
+.form-card textarea{
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    resize:none;
+    font-size:15px;
+    font-family:inherit;
+}
+
+.form-card textarea:focus{
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0 0 8px rgba(37,99,235,.2);
+}
