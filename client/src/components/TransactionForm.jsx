@@ -28,11 +28,14 @@ function TransactionForm({ fetchTransactions }) {
         formData
       );
 
-      setFormData({
-        title: "",
-        amount: "",
-        type: "income",
-      });
+     setFormData({
+  title: "",
+  amount: "",
+  type: "income",
+  category: "Others",
+  note: "",
+  date: new Date().toISOString().split("T")[0],
+});
 
       fetchTransactions();
 
@@ -64,7 +67,14 @@ function TransactionForm({ fetchTransactions }) {
           value={formData.amount}
           onChange={handleChange}
         />
-
+         <select
+          name="type"
+          value={formData.type}
+          onChange={handleChange}
+        >
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
         <input
         type="date"
         name="date"
@@ -85,6 +95,8 @@ function TransactionForm({ fetchTransactions }) {
         value={formData.category}
         onChange={handleChange}
         >
+       
+
         <option>Salary</option>
         <option>Food</option>
         <option>Travel</option>

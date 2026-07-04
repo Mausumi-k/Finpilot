@@ -60,3 +60,48 @@
 .expense-text{
     color:#dc2626;
 }
+
+.transaction-left{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.category{
+    color:#2563eb;
+    font-weight:600;
+    font-size:14px;
+}
+
+.date{
+    color:#64748b;
+    font-size:13px;
+}
+
+.note{
+    color:#475569;
+    font-size:14px;
+    font-style:italic;
+}
+
+.transaction-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding:18px;
+    border-radius:15px;
+    background:#fafafa;
+    margin-bottom:15px;
+    transition:.3s;
+}
+
+.transaction-item:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+}
+
+.transaction-right{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}

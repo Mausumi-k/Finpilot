@@ -1,0 +1,39 @@
+.summary-box{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.summary-box h2{
+
+    margin-bottom:25px;
+
+    color:#1e293b;
+
+}
+
+.summary-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
+
+    padding-bottom:10px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.summary-row strong{
+
+    color:#2563eb;
+
+}

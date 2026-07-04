@@ -7,29 +7,39 @@ import SummaryCards from "../components/SummaryCards";
 import TransactionForm from "../components/TransactionForm";
 import TransactionList from "../components/TransactionList";
 import ExpenseChart from "../components/ExpenseChart";
+import MonthlySummary from "../components/MonthlySummary";
 
 function Dashboard() {
+
   const [transactions, setTransactions] = useState([]);
 
-  // Fetch all transactions
-  const fetchTransactions = async () => {
+  // "" = All transactions by default
+  const [selectedFilter, setSelectedFilter] = useState("");
+
+  const fetchTransactions = async (filter = "") => {
+
     try {
+
       const res = await axios.get(
-        "http://localhost:5000/api/transactions"
+        `http://localhost:5000/api/transactions?filter=${filter}`
       );
 
       setTransactions(res.data);
+
     } catch (error) {
+
       console.error("Error fetching transactions:", error);
+
     }
+
   };
 
-  // Fetch data when page loads
   useEffect(() => {
-    fetchTransactions();
-  }, []);
 
-  // Calculate totals
+    fetchTransactions(selectedFilter);
+
+  }, [selectedFilter]);
+
   const income = transactions
     .filter((transaction) => transaction.type === "income")
     .reduce((sum, transaction) => sum + Number(transaction.amount), 0);
@@ -39,11 +49,55 @@ function Dashboard() {
     .reduce((sum, transaction) => sum + Number(transaction.amount), 0);
 
   return (
+
     <div className="dashboard">
+
       <div className="dashboard-header">
-    <h1>👋 Welcome Back!</h1>
-    <p>Track your income and expenses with FinPilot.</p>
-</div>
+
+        <h1>👋 Welcome Back!</h1>
+
+        <p>Track your income and expenses with FinPilot.</p>
+
+      </div>
+
+      <div className="filter-bar">
+
+        <button
+          className={selectedFilter === "" ? "active-filter" : ""}
+          onClick={() => setSelectedFilter("")}
+        >
+          All
+        </button>
+
+        <button
+          className={selectedFilter === "today" ? "active-filter" : ""}
+          onClick={() => setSelectedFilter("today")}
+        >
+          Today
+        </button>
+
+        <button
+          className={selectedFilter === "week" ? "active-filter" : ""}
+          onClick={() => setSelectedFilter("week")}
+        >
+          Week
+        </button>
+
+        <button
+          className={selectedFilter === "month" ? "active-filter" : ""}
+          onClick={() => setSelectedFilter("month")}
+        >
+          Month
+        </button>
+
+        <button
+          className={selectedFilter === "year" ? "active-filter" : ""}
+          onClick={() => setSelectedFilter("year")}
+        >
+          Year
+        </button>
+
+      </div>
 
       <SummaryCards
         income={income}
@@ -51,24 +105,37 @@ function Dashboard() {
       />
 
       <div className="dashboard-content">
+
         <TransactionForm
-          fetchTransactions={fetchTransactions}
+          fetchTransactions={() => fetchTransactions(selectedFilter)}
         />
 
         <TransactionList
           transactions={transactions}
-          fetchTransactions={fetchTransactions}
+          fetchTransactions={() => fetchTransactions(selectedFilter)}
         />
 
-       <div className="chart-section">
-    <ExpenseChart
-        income={income}
-        expense={expense}
-    />
-</div>
       </div>
+
+      <div className="analytics">
+
+        <ExpenseChart
+          income={income}
+          expense={expense}
+        />
+
+        <MonthlySummary
+          income={income}
+          expense={expense}
+          transactions={transactions}
+        />
+
+      </div>
+
     </div>
+
   );
+
 }
 
 export default Dashboard;

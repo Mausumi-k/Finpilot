@@ -41,13 +41,30 @@ function TransactionList({ transactions, fetchTransactions }) {
     key={transaction._id}
   >
 
-    <div>
+    <div className="transaction-left">
 
       <h3>{transaction.title}</h3>
 
-      <p className="type">
-        {transaction.type}
+      <p className="category">
+        📂 {transaction.category || "Others"}
       </p>
+
+      <p className="date">
+        📅{" "}
+        {transaction.date
+  ? new Date(transaction.date).toLocaleDateString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    })
+  : "-"}
+      </p>
+
+      {transaction.note && (
+        <p className="note">
+          📝 {transaction.note}
+        </p>
+      )}
 
     </div>
 
@@ -76,7 +93,6 @@ function TransactionList({ transactions, fetchTransactions }) {
   </div>
 
 ))
-
       }
 
     </div>
