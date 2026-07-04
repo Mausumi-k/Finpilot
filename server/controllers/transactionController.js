@@ -11,12 +11,56 @@ export const addTransaction = async (req, res) => {
 };
 export const getTransactions = async (req, res) => {
   try {
-    const transactions = await Transaction.find();
+    const { filter } = req.query;
+
+    let startDate = new Date();
+
+    if (filter === "today") {
+      startDate.setHours(0, 0, 0, 0);
+    }
+
+    else if (filter === "week") {
+      startDate.setDate(startDate.getDate() - 7);
+    }
+
+    else if (filter === "month") {
+      startDate = new Date(
+        startDate.getFullYear(),
+        startDate.getMonth(),
+        1
+      );
+    }
+
+    else if (filter === "year") {
+      startDate = new Date(
+        startDate.getFullYear(),
+        0,
+        1
+      );
+    }
+
+    let transactions;
+
+    if (filter) {
+
+      transactions = await Transaction.find({
+        date: { $gte: startDate },
+      }).sort({ date: -1 });
+
+    } else {
+
+      transactions = await Transaction.find().sort({ date: -1 });
+
+    }
+
     res.json(transactions);
+
   } catch (error) {
+
     res.status(500).json({
       message: error.message,
     });
+
   }
 };
 export const deleteTransaction = async (req, res) => {
